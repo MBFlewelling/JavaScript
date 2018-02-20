@@ -43,6 +43,9 @@ Start the server
 If you are on Windows, you can start the server in another window  
 `start npm start`
 
+If running `npm start` does not open a browser window, navigate to http://localhost:4000/
+to make sure the installation was successful.
+
 ## Before the class
 
 There are likely to be changes right up to class time. The day before the class, 
