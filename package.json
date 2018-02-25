@@ -4,7 +4,7 @@
   "description": "Class files for Speeding Planet's Advanced JavaScript course",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --open",
+    "start": "concurrently \"webpack-dev-server --open\" \"node src/index.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,20 +19,28 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "bootstrap": "^4.0.0",
+    "concurrently": "^3.5.1",
     "css-loader": "^0.28.9",
+    "del": "^3.0.0",
     "file-loader": "^1.1.6",
     "font-awesome": "^4.7.0",
     "gulp": "^3.9.1",
     "gulp-cli": "^2.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-markdown": "^2.0.1",
+    "gulp-wrap": "^0.13.0",
     "html-loader": "^0.5.5",
+    "http-server": "^0.11.1",
     "image-webpack-loader": "^4.1.0",
     "jquery": "^3.3.1",
     "json-loader": "^0.5.7",
     "lodash": "^4.17.5",
+    "opn": "^5.2.0",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.20.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.11.0",
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "^2.11.1",
+    "yargs": "^11.0.0"
   }
 }

@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = {
+/*module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
@@ -11,4 +11,4 @@ module.exports = {
     port: 3000,
     watchContentBase: true
   }
-};
+};*/

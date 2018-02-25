@@ -1,10 +1,29 @@
-window.addEventListener( 'DOMContentLoaded', function() {
-  if ( !document.getElementById( 'output' ) ) {
-    const el = document.createElement( 'div' );
-    el.setAttribute( 'id', 'output' );
-    document.body.appendChild( el );
-  }
+const webpack = require( 'webpack' );
+const path = require( 'path' );
+const demos = [ '../demos/import-export/import-export.js' ];
 
-  const el = document.getElementById('output');
-  el.innerHTML = '<h1>Success! Welcome to the class files.</h1>';
+const configs = demos.map( configPath => {
+  const dir  = path.dirname( configPath ),
+        file = path.basename( configPath );
+
+  const config = {
+    entry : configPath,
+    output: {
+      filename: './bundle.js',
+      path    : path.resolve( __dirname, dir )
+    },
+    stats : 'verbose'
+  };
+
+  console.log( 'Input: ', configPath );
+  console.log( 'Generated config: ', config );
+
+  return config;
+} );
+
+const compiler = webpack( configs );
+compiler.watch( {}, ( err, stats ) => {
+  console.log( 'Change detected, recompiling....' );
+  console.log( stats.stats );
+
 } );
