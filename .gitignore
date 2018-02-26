@@ -3,8 +3,9 @@
 .idea
 node_modules
 current-exercise
-ex-00
+ex-00/*
 bundle.js
+ex-00*.md
 
-
+.DS_Store
 
