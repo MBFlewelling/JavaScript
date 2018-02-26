@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Template Strings</title>
+</head>
+<body>
+<h1>Demo: Template Strings</h1>
+<h2>Check the console for output</h2>
+<script>
+  const x = 10;
+  const firstName = 'John';
+  let person = {
+    firstName: 'Alain',
+    lastName : 'Chautard'
+  };
+
+  console.log( `x is ${x}.` );
+  console.log( `x + 10 is ${x + 10}` );
+  console.log( `firstName is ${firstName}` );
+  console.log( `person is ${person.firstName} ${person.lastName}` );
+  console.log( `person is also ${JSON.stringify( person )}` );
+
+</script>
+</body>
+</html>
