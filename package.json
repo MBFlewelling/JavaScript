@@ -4,7 +4,7 @@
   "description": "Class files for Speeding Planet's Advanced JavaScript course",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"http-server -p 3000 -c-1 -o\" \"node src/index.js\"",
+    "start": "http-server -p 3000 -c-1 -o",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
