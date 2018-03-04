@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class Getters and Setters</title>
+</head>
+<body>
+<h1>Class Getters and Setters</h1>
+<h2>Check the console for output!</h2>
+
+<script>
+
+  class Car {
+
+    constructor(make, model) {
+      this.manufacturer = make;
+      this.model = model;
+    }
+
+    get manufacturer() {
+      console.log( 'Called the getter on manufacturer.' );
+      return this.make;
+    }
+
+    set manufacturer(manufacturer) {
+      console.log( 'Called the setter on manufacturer.' );
+      this.make = manufacturer;
+    }
+
+    getMake() {
+      return this.make;
+    }
+
+    setMake(make) {
+      this.make = make;
+    }
+
+    getModel() {
+      return this.model;
+    }
+
+    setModel(model) {
+      this.model = model;
+    }
+
+    toString() {
+      return `${this.manufacturer} ${this.model}`;
+    }
+  }
+
+  const honda = new Car( 'Honda', 'Civic' );
+  console.log( 'Honda: ', honda.toString() );
+
+</script>
+
+</body>
+</html>

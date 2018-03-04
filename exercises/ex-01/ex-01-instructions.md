@@ -16,4 +16,4 @@
 ### Import and use the logging utility into our main JavaScript file
 * In `main.js`, import the logger from `utils.js`
 * Use the logger's `log` method to print out a test message
-* Verify that the logger worked by viewing http://localhost:3000/current-exercise
+* Verify that the logger worked by viewing http://localhost:3000/src/current-exercise

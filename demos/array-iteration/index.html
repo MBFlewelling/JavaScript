@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Iteration</title>
+</head>
+<body>
+<h1>Array iteration</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  let names = [ 'Einstein', 'Curie', 'Rutherford', 'Planck', 'Heisenberg',
+    'Bohr', 'Hawking', '', 'Sagan', 'Tyson'
+  ];
+
+  // Print each word, for-of
+  for (name of names) {
+    console.log( `Name: ${name}` );
+  }
+
+  // Print each word, and its position in the array
+  names.forEach( ( word, index ) => {
+    console.log( '%s occurs at position %d', word, index );
+  } );
+
+  // Make sure there are no zero-length elements
+  let result = names.every( word => word.length > 0 );
+
+  if ( result ) {
+    console.log( 'No zero-length elements!' );
+  } else {
+    console.log( 'Found at least one zero-length element.' );
+  }
+
+</script>
+</body>
+</html>

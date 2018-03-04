@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>First Class Functions</title>
+</head>
+<body>
+<h1>First Class Functions</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  function genericFunction() {
+    console.log( 'This is just a generic function.' );
+  }
+
+  // Assign a function to a variable
+  const functionRef = genericFunction;
+
+  // Then call it via the variable
+  functionRef();
+
+  // Assign an unnamed function to a variable
+  const anonymousFunction = function() {
+    console.log( 'This is an anonymous function, sorta.' );
+  };
+
+  anonymousFunction();
+
+  // Pass this function an operator, and two numbers to work with
+  function calculate( op, x, y ) {
+    console.log( 'The result is ', op( x, y ) );
+  }
+
+  calculate( function( a, b ) { return a + b; }, 4, 8 );
+
+  // Returns a function customized according to a parameter
+  function customizedGreeting( name ) {
+    return function() {
+      console.log( 'Hello, ' + name );
+    };
+  }
+
+  const helloJohn = customizedGreeting( 'John' );
+  helloJohn();
+</script>
+</body>
+</html>

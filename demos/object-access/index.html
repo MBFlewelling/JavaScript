@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Object Access</title>
+</head>
+<body>
+<h1>Object access</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  const car = {
+    make  : 'Honda',
+    model : 'Civic',
+    wheels: 4,
+
+    drive: ( speed ) => {
+      if ( speed > 55 ) {
+        console.warn( 'Don\'t go too fast.' );
+      } else {
+        console.log( `Setting speed to ${speed}.` );
+      }
+    },
+  };
+
+  car.color = 'red';
+  car.getColor = function() { return this.color; };
+
+  car.toString = function() {
+    return `A ${car.getColor()} ${car.make} ${car.model}.`;
+  };
+
+  console.log( 'car.toString(): ', car.toString() );
+
+  const carPreventExtensions = Object.assign( {}, car );
+  Object.preventExtensions( carPreventExtensions );
+
+  // Try to add a new property, fails silently
+  carPreventExtensions.mileage = 125000;
+  console.log( 'Object.keys(carPreventExtensions): ',
+    Object.keys( carPreventExtensions ) );
+  console.log( 'carPreventExtensions.hasOwnProperty("mileage"): ',
+    carPreventExtensions.hasOwnProperty( 'mileage' ) );
+
+  const carSealed = Object.assign( {}, car );
+  Object.seal( carSealed );
+
+  // Try to reconfigure a property, raises an error
+  // Object.defineProperty( carSealed, 'color', { enumerable: false } );
+  console.log( 'Object.getOwnPropertyDescriptor(carSealed, \'color\' ): ',
+    Object.getOwnPropertyDescriptor( carSealed, 'color' ) );
+
+  const carFrozen = Object.assign( {}, car );
+  Object.freeze( carFrozen );
+
+  // Try to change an existing value, fails silently
+  carFrozen.color = 'green';
+  console.log( carFrozen.toString() );
+
+</script>
+</body>
+</html>

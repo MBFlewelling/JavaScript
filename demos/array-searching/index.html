@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Processing</title>
+</head>
+<body>
+<h1>Array processing</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  let names = [ 'Einstein', 'Curie', 'Rutherford', 'Planck', 'Heisenberg',
+    'Bohr', 'Hawking', 'Sagan', 'Tyson'
+  ];
+
+  console.log( 'Professor Hawking is at position ',
+    names.indexOf( 'Hawking' ) );
+
+  console.log( 'Is Dr. Tyson in the list? ', names.includes( 'Tyson' ) );
+
+  // Let's add some names
+  names.push( 'Teller' );
+  names.unshift( 'Formaggio' );
+  names.unshift( 'Feynman' );
+
+  console.log( 'Names: ', names.join( ' ' ) );
+
+
+</script>
+</body>
+</html>

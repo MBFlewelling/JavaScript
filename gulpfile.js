@@ -7,14 +7,16 @@ let gulp     = require( 'gulp' ),
     open     = require( 'gulp-open' ),
     path     = require( 'path' ),
     webpack  = require( 'webpack' ),
+    chalk    = require( 'chalk' ),
     fs       = require( 'fs' ),
     argv     = require( 'yargs' ).argv;
 
 let exercises          = 'exercises/',
     begin              = '/begin/',
     solution           = '/end/',
+    demos              = 'demos/',
     student            = '/student/',
-    src                = 'current-exercise/',
+    src                = 'src/current-exercise/',
     publicFolder       = 'public/',
     instructionsFolder = 'instructions/',
     instructions       = '-instructions.md',
@@ -39,8 +41,83 @@ const webpackConfig = {
     path    : path.resolve( __dirname )
   },
   devtool: 'inline-source-map',
-  stats  : 'verbose'
+  stats  : 'verbose',
+  module : {
+    rules: [ {
+      test   : /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      use    : {
+        loader : 'babel-loader',
+        options: {
+          presets: [ 'babel-preset-env' ],
+          plugins: ['babel-plugin-transform-object-rest-spread']
+        }
+      }
+    }
+    ]
+  }
 };
+
+gulp.task( 'check-environment', ( done ) => {
+  console.log( 'process.env: ', process.env );
+  console.log( 'process.cwd(): ', process.cwd() );
+  console.log( '__dirname: ', __dirname );
+  console.log( 'path.resolve(__dirname): ', path.resolve( __dirname ) );
+  done();
+} );
+
+gulp.task( 'webpack-current-demo', () => {
+  const currentDirectory = process.cwd();
+  if ( !/demos/.test( currentDirectory ) ) throw Error(
+    'Call gulp --cwd . webpack-current-demo, don\'t skip the --cwd!' );
+
+  // Ugh, because I wrote the workbook before the code. Don't do that.
+  const webpackDemoConfig = {
+    context: currentDirectory,
+    entry  : () => {
+      if ( /import-export/.test( currentDirectory ) ) {
+        return './import-export.js';
+      } else if ( /main/.test( currentDirectory ) ) {
+        return './main';
+      } else {
+        console.error(
+          chalk.red.bold( 'No demos need compiling in this directory.' ) );
+        process.exit( 1 );
+      }
+    },
+    output : {
+      filename: `./bundle.js`,
+      path    : currentDirectory
+    },
+    devtool: 'inline-source-map',
+    stats  : 'verbose'
+  };
+
+  return new Promise( resolve => webpack( webpackDemoConfig, ( err, stats ) => {
+
+    if ( err ) {
+      console.error( err.stack || err );
+      if ( err.details ) {
+        console.error( err.details );
+      }
+      return;
+    }
+
+    const info = stats.toJson();
+
+    if ( stats.hasErrors() ) {
+      console.error( `${info.errors}` );
+    }
+
+    if ( stats.hasWarnings() ) {
+      console.warn( `${info.warnings}` );
+    }
+
+    console.log( stats.toString() );
+
+    resolve();
+  } ) );
+} );
 
 gulp.task( 'webpack-current-exercise', () => {
 
@@ -90,7 +167,7 @@ gulp.task( 'clean-public', () => {
 } );
 
 gulp.task( 'clean-src', function( done ) {
-  rimraf( src + files, done );
+  rimraf( src + allFiles, done );
 } );
 
 gulp.task( 'clean-all', gulp.series( 'clean-src' ) );
@@ -138,7 +215,7 @@ gulp.task( 'show-solution', gulp.series( 'clean-all', function() {
   const baseDir = exercises + exerciseNumber + solution;
   return gulp.src( baseDir + files )
              .pipe( gulp.dest( src ) );
-} ) );
+}, 'webpack-current-exercise', 'webpack-watch' ) );
 
 gulp.task( 'copy-to-begin', gulp.series( 'clean-begin', () => {
   if ( !exerciseNumber ) throw Error( 'No exercise number!' );

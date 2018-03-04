@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Rest Parameters</title>
+</head>
+<body>
+<h1>Rest Parameters</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  /*
+   * This function takes a template string of the form
+   * "She was {} years old and had {} eyes"
+   * Where {} is a placeholder for a variable. The second and subsequent arguments
+   * will be substituted into the placeholders
+   */
+  function templater( str, ...args ) {
+    if (args.length < 1) {
+      console.error( 'Insuffient number of arguments: ', arguments );
+      return;
+    }
+
+    let re = /{}/g,
+        count = 0,
+        matches;
+
+    while ( (matches = re.exec( str )) !== null ) {
+      str = str.replace( '{}', args[ count++ ] )
+    }
+
+    return str;
+  }
+
+  let input = 'The {} {} {} jumped over the {} {}';
+
+  console.log( `Original: ${input}.` );
+  console.log( `Templated: ${templater( input, 'quick', 'brown', 'fox', 'lazy', 'dog' )}.` );
+</script>
+</body>
+</html>

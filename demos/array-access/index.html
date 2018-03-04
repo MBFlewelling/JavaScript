@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Processing</title>
+</head>
+<body>
+<h1>Array processing</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  let names = [ 'Einstein', 'Curie', 'Rutherford', 'Planck', 'Heisenberg',
+    'Bohr'
+  ];
+
+  console.log( names.slice( 1, 4 ) );
+  console.log( names.slice( -2 ) );
+  console.log( names.slice( 2 ) );
+
+  let namesCopy = [ ...names ];
+
+  // Good-bye Heisenberg
+  const spliced = namesCopy.splice( 4, 1 );
+  console.log( 'Spliced out: ', spliced );
+  console.log( 'Unspliced: ', namesCopy.join( ' ' ) );
+
+  // Add some new people
+  const newNames = namesCopy.splice( namesCopy.length, 0, 'Hawking', 'Sagan', 'Tyson' );
+  console.log( 'namesCopy: ', namesCopy.join( ' ' ) );
+
+  // Add some new people a different way
+  let updatedNames = [...names, 'Hawking', 'Sagan', 'Tyson'];
+
+</script>
+</body>
+</html>

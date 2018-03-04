@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Error Handling</title>
+</head>
+<body>
+<h1>Error Handling</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  function raiseTypeError() {
+    let array = [];
+    console.log( array[ 2 ].length );
+  }
+
+  function raiseRangeError() {
+    let arr = new Array( -1 );
+  }
+
+  function raiseReferenceError() {
+    //let foo = {};
+    foo.bar();
+  }
+
+  function raiseSyntaxError() {
+    eval( 'broken-[])*&code()' );
+  }
+
+  try {
+    raiseRangeError();
+  } catch ( err ) {
+    console.log( 'The error was: ', err );
+  }
+
+  window.addEventListener( 'error', event => {
+    console.log( 'Error captured at the window level: ', event );
+  } );
+
+  raiseReferenceError();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class Statics</title>
+</head>
+<body>
+<h1>Class Statics</h1>
+<h2>Check the console for output!</h2>
+
+<script>
+  let nextVIN = 1;
+
+  class Vehicle {
+    static getNextVIN() {
+      return nextVIN++;
+    }
+
+    constructor( make, model ) {
+      console.log( 'Vehicle.constructor()' );
+      this.make = make;
+      this.model = model;
+      this._vin = Vehicle.getNextVIN();
+    }
+
+    get manufacturer() {
+      console.log( 'Called the getter on manufacturer.' );
+      return this.make;
+    }
+
+    set manufacturer( manufacturer ) {
+      console.log( 'Called the setter on manufacturer.' );
+      this.make = manufacturer;
+    }
+
+    getMake() {
+      return this.make;
+    }
+
+    setMake( make ) {
+      this.make = make;
+    }
+
+    getModel() {
+      return this.model;
+    }
+
+    setModel( model ) {
+      this.model = model;
+    }
+
+    toString() {
+      return `${this.make} ${this.model} [VIN: ${this._vin}]`;
+    }
+  }
+
+  class Car extends Vehicle {
+    constructor( make, model, year, color ) {
+      console.log( 'Car.constructor()' );
+      super( make, model );
+      this.year = year;
+      this.color = color;
+    }
+
+    toString() {
+      let parent = super.toString();
+      return `${this.year} ${parent} (${this.color})`;
+    }
+
+  }
+
+  const honda = new Car( 'Honda', 'Civic', 2002, 'red' );
+  console.log( 'Honda: ', honda.toString() );
+
+</script>
+
+</body>
+</html>

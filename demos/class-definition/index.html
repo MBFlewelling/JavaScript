@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Class Definition</title>
+</head>
+<body>
+<h1>Class Definition</h1>
+<h2>Check the console for output!</h2>
+
+<script>
+  class Car {
+
+    constructor( make, model ) {
+      this.make = make;
+      this.model = model;
+    }
+
+    getMake() {
+      return this.make;
+    }
+
+    setMake( make ) {
+      this.make = make;
+    }
+
+    getModel() {
+      return this.model;
+    }
+
+    setModel( model ) {
+      this.model = model;
+    }
+
+    toString() {
+      return `${this.make} ${this.model}`;
+    }
+  }
+
+  const honda = new Car( 'Honda', 'Civic' );
+  console.log( 'Honda: ', honda.toString() );
+</script>
+</body>
+</html>

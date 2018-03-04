@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Object Destructuring</title>
+</head>
+<body>
+<h1>Object destructuring</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  const car = {
+    make  : 'Honda',
+    model : 'Civic',
+    wheels: 4,
+
+    drive: ( speed ) => {
+      if ( speed > 55 ) {
+        console.warn( 'Don\'t go too fast.' );
+      } else {
+        console.log( `Setting speed to ${speed}.` );
+      }
+    },
+  };
+
+  car.color = 'red';
+  car.getColor = function() { return this.color; };
+
+  car.toString = function() {
+    return `A ${car.getColor()} ${car.make} ${car.model}.`;
+  };
+
+  console.log( 'car.toString(): ', car.toString() );
+
+  const {color, make, model} = car;
+  console.log(`Color: ${color}, Make: ${make}, Model: ${model}`);
+
+  function registerCar({make, model}) {
+    console.log(`Registered a ${make} ${model}`);
+  }
+
+  registerCar( car );
+
+</script>
+</body>
+</html>

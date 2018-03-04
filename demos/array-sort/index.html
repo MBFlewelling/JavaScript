@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Processing</title>
+</head>
+<body>
+<h1>Array processing</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  let names = [ 'Einstein', 'Curie', 'Rutherford', 'Planck', 'Heisenberg',
+    'Bohr', 'Hawking', 'Sagan', 'Tyson'
+  ];
+
+  console.log( 'names alphabetically: ', names.sort().join(' ') );
+
+  names.sort( ( a, b ) => {
+    if ( a.length > b.length ) {
+      return 1;
+    } else if ( b.length > a.length ) {
+      return -1
+    } else {
+      return 0;
+    }
+  } );
+
+  console.log( 'names by length:\n', names.join( '\n' ) );
+
+</script>
+</body>
+</html>

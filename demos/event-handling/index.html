@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Event Handling</title>
+</head>
+<body>
+<h1>Event Handling</h1>
+<h2>Check the console for output!</h2>
+
+<div>
+  <form>
+    <label for="event-text">Enter some text: </label>
+    <input type="text" id="event-text">
+    <button type="button" id="event-button">Click me!</button>
+  </form>
+</div>
+
+<script>
+  const textField = document.getElementById( 'event-text' );
+  const button = document.getElementById( 'event-button' );
+
+  textField.addEventListener( 'focus',
+    () => console.log( 'You focused on the text field' ) );
+  textField.addEventListener( 'blur',
+    () => console.log( 'You blurred away from the text field' ) );
+  textField.addEventListener( 'change',
+    () => console.log( 'You changed the text field' ) );
+
+  button.addEventListener( 'click',
+    () => console.log( 'You clicked on the button.' ) );
+
+</script>
+</body>
+</html>

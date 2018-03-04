@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Object Copying and Iteration</title>
+</head>
+<body>
+<h1>Object copying and iteration</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  const car = {
+    make: 'Honda',
+    model: 'Civic',
+    wheels: 4,
+
+    drive: (speed) => {
+      if (speed > 55) {
+        console.warn( 'Don\'t go too fast.' );
+      } else {
+        console.log(`Setting speed to ${speed}.`);
+      }
+    },
+  };
+
+  car.color = 'red';
+  car.getColor = function() { return this.color; };
+
+  car.toString = function() {
+    return `A ${car.getColor()} ${car.make} ${car.model}.`;
+  };
+
+  console.log( 'car.toString(): ', car.toString() );
+
+  console.log( 'What are the properties of car? ', Object.keys( car ) );
+
+  const car2 = Object.assign( {}, car );
+  car2.year = 2018;
+
+  // car and car2 are not the same reference
+  console.log( 'Does car === car2? ', car === car2 );
+
+  const car3 = {...car2};
+
+  // car2 and car3 are not the same reference
+  console.log( 'Does car2 === car3? ', car2 === car3 );
+
+  // But all the data from car was copied over
+  console.log( 'Does car3 have a year? ', car3.year );
+</script>
+</body>
+</html>

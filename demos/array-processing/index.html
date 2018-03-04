@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Array Processing</title>
+</head>
+<body>
+<h1>Array processing</h1>
+<h2>Check the console for output</h2>
+
+<script>
+  let numbers = [ 1, 2, 3, 4, 5, 6, 7, 8 ];
+
+  let currencies = numbers.map((number) => {
+    return '$' + number.toString() + '.00';
+  });
+
+  console.log( 'Formatted as currency', currencies );
+
+  let odds = numbers.filter( ( number ) => number % 2 );
+
+  console.log( 'Odd numbers: ', odds );
+
+  let addEmUp = numbers.reduce( ( previous, current ) => previous + current, 0 );
+  console.log( 'Sum of all numbers: ', addEmUp );</script>
+</body>
+</html>
